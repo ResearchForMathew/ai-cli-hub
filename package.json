@@ -1,0 +1,26 @@
+{
+  "name": "@researchformathew/ai-cli-hub",
+  "version": "0.1.0",
+  "description": "A secure, Pi-inspired supervisor for vendor-native AI coding CLIs.",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "aih": "bin/aih.mjs"
+  },
+  "scripts": {
+    "check": "npm run lint && npm test",
+    "lint": "node --check bin/aih.mjs && node --check src/cli.mjs && node --check src/config.mjs && node --check src/ledger.mjs && node --check src/runner.mjs && node --check test/cli.test.mjs && node --check test/config.test.mjs && node --check test/runner.test.mjs",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "keywords": [
+    "ai",
+    "cli",
+    "codex",
+    "claude",
+    "grok",
+    "opencode"
+  ]
+}
