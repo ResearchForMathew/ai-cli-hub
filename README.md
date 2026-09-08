@@ -5,19 +5,20 @@ It borrows Pi's lane-oriented terminal ergonomics while keeping authentication,
 sessions, and policy inside the official Codex, Claude Code, Grok Build, and
 OpenCode processes.
 
-The first target environment is one Mac with:
+AI CLI Hub is designed for developers who use multiple vendor-native coding
+CLIs and want to keep provider identities, sessions, and state isolated. A
+typical setup can include:
 
-- three separate ChatGPT accounts: personal, Business A, and Business B;
-- one Claude Max account;
-- one Grok subscription account;
-- one temporary Z.AI Coding Plan account.
+- multiple isolated Codex lanes;
+- optional Claude Code, Grok Build, and OpenCode lanes;
+- provider-specific safety, consent, and expiry controls.
 
 ## Why a supervisor instead of one universal provider client?
 
 Subscription OAuth behavior and account policy differ by vendor. `aih` does not
 reimplement provider APIs, rotate accounts to evade limits, or copy tokens into
 a shared store. Each lane invokes the installed vendor CLI with a minimal
-allowlisted environment. The three Codex lanes each get a distinct `CODEX_HOME`.
+allowlisted environment. Each Codex lane gets a distinct `CODEX_HOME`.
 
 ## Install locally
 
@@ -71,7 +72,7 @@ aih login grok-oauth
 aih login zai-temp
 ```
 
-The three ChatGPT logins open separate Codex state roots. Do not copy
+Codex lane logins open separate state roots. Do not copy
 `auth.json` between them.
 
 ## Run
@@ -119,10 +120,10 @@ hashed working directory, and Git branch/commit metadata. It does **not** store
 raw arguments, prompts, responses, transcripts, environment values, tokens, or
 full working-directory paths.
 
-## Temporary Z.AI lane
+## Optional expiring OpenCode lane
 
-`zai-temp` defaults to `zai-coding-plan/glm-5.2` in an isolated OpenCode data
-and config root. When the cancellation date is known, set `expiresOn` in
+The included `zai-temp` example defaults to `zai-coding-plan/glm-5.2`
+in an isolated OpenCode data and config root. When the cancellation date is known, set `expiresOn` in
 `~/.config/aih/config.json` using `YYYY-MM-DD`; the lane then fails closed after
 that date.
 
